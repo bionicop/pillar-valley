@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillar Valley</title>
+  <!--
+    Original Concept: Pillar Valley by Evan Bacon
+    https://github.com/EvanBacon/pillar-valley
+    This implementation is inspired by and recreates the original concept
+    for educational purposes.
+  -->
+  <link rel="preconnect" href="https://fonts.gstatic.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="canvas"></canvas>
+
+    <!-- UI Overlay -->
+    <div class="ui">
+      <!-- Main Menu -->
+      <div id="menu" class="screen active">
+        <div class="menu-container">
+          <div class="title">Pillar Valley</div>
+          <button class="btn" data-speed="3">Start</button>
+        </div>
+      </div>
+      <!-- Game Over -->
+      <div id="gameover" class="screen">
+        <div class="menu-container">
+          <div class="title">Game Over</div>
+          <div class="subtitle" id="final-score">Score: 0</div>
+          <button class="btn" data-action="restart">Restart</button>
+        </div>
+      </div>
+      <!-- Score Display -->
+      <div class="score">
+        <div id="score" class="score-main">0</div>
+        <div id="best" class="score-best">Best: 0</div>
+      </div>
+
+      <!-- Mobile Tap Instruction -->
+      <div class="tap-instruction">Tap to jump</div>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
