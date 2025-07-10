@@ -17,6 +17,7 @@
 
 **Original Concept**: This project is inspired by [Evan Bacon's Pillar Valley](https://github.com/EvanBacon/pillar-valley). The original idea and concept belong to [Evan Bacon](https://github.com/EvanBacon). This implementation serves as a learning exercise and academic project recreation.
 
+## 🎮 [**Play the Game Live!**](https://bionicop.github.io/pillar-valley/)
 
 ## 📋 Table of Contents
 
