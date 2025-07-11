@@ -10,7 +10,7 @@ $(document).ready(() => {
     BALL_RADIUS: 1.69,
     BALL_HEIGHT: 2,
     BALL_SHRINK: [1, 0.3, 0.006], // [start, min, speed]
-    SPEED: [3.2, 7, 0.45],         // [initial, max, increase_per_3_score]
+    SPEED: [2, 7, 0.45],         // [initial, max, increase_per_3_score]
     TOLERANCE: 0.9,
     ROTATION_RADIUS: 12,           // Distance from pillar center
     FOG: [25, 100],
@@ -51,7 +51,7 @@ $(document).ready(() => {
     colors: COLOR_SCHEMES[0]
   };
 
-  let scene, camera, renderer, centerBall, activeBall, pillarMeshes = [];
+  let scene, camera, renderer, centerBall, activeBall, pillarMeshes = [], clock;
 
   // ═══════════════════════════════════════════════════════════════════════════════
   // UTILITIES
@@ -88,6 +88,7 @@ $(document).ready(() => {
     // Initialize balls
     initBalls();
     setupEvents();
+    clock = new THREE.Clock();
     animate();
   }
 
@@ -136,11 +137,11 @@ $(document).ready(() => {
     activeBall.scale.setScalar(game.ballScale);
   }
 
-  function rotateBall() {
+  function rotateBall(delta) {
     if (!game.playing) return;
 
     // Update rotation with current direction
-    game.ballAngle = (game.ballAngle + game.ballSpeed * game.ballDirection) % 360;
+    game.ballAngle = (game.ballAngle + game.ballSpeed * game.ballDirection * delta * 60) % 360;
 
     // Dynamic speed increase
     game.ballSpeed = Math.min(
@@ -307,10 +308,10 @@ $(document).ready(() => {
     $('body').removeClass().addClass('game-over');
   }
 
-  function update() {
+  function update(delta) {
     if(!game.playing) return;
 
-    rotateBall();
+    rotateBall(delta);
 
     // Camera follow
     const current = game.pillars[0];
@@ -379,7 +380,8 @@ $(document).ready(() => {
 
   function animate() {
     requestAnimationFrame(animate);
-    update();
+    const delta = clock.getDelta();
+    update(delta);
     renderer.render(scene, camera);
   }
 
